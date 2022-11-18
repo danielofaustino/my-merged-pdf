@@ -7,7 +7,7 @@ import { cleanFiles } from "../utils/index.js";
 import * as url from 'url';
 const __dirname = url.fileURLToPath(new URL('../../src', import.meta.url));
 const folderPath = `${__dirname}/public/uploads`;
-console.log(folderPath)
+//console.log(folderPath)
 const downloadPath = `${__dirname}/public/downloads`;
 
 const pdfRoutes = express.Router();

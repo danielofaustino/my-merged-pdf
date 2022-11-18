@@ -3,7 +3,7 @@ import multer from 'multer'
 import * as url from 'url';
 const __dirname = url.fileURLToPath(new URL('../../src', import.meta.url));
 const folderPath = `${__dirname}/public/uploads`;
-console.log(folderPath)
+//console.log(folderPath)
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
