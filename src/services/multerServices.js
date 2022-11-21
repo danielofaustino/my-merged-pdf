@@ -4,9 +4,7 @@ import { getDirName } from '../utils';
 const folderPath = getDirName('/public/uploads')
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, folderPath)
-  },
+  destination: folderPath,
   filename: (req, file, cb) => {
     cb(null, file.originalname)
   }
