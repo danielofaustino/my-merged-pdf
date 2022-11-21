@@ -1,9 +1,7 @@
 import multer from 'multer'
+import { getDirName } from '../utils';
 
-import * as url from 'url';
-const __dirname = url.fileURLToPath(new URL('../../src', import.meta.url));
-const folderPath = `${__dirname}/public/uploads`;
-//console.log(folderPath)
+const folderPath = getDirName('/public/uploads')
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

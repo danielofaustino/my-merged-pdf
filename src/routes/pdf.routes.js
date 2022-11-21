@@ -2,13 +2,12 @@ import express from "express";
 import { mergePdf } from "../services/pdfServices.js";
 import { upload } from "../services/multerServices.js";
 import { cleanFiles } from "../utils/index.js";
+import { getDirName } from "../utils/index.js";
 
 
-import * as url from 'url';
-const __dirname = url.fileURLToPath(new URL('../../src', import.meta.url));
-const folderPath = `${__dirname}/public/uploads`;
+const folderPath = getDirName('/public/uploads')
 //console.log(folderPath)
-const downloadPath = `${__dirname}/public/downloads`;
+const downloadPath = getDirName('/public/downloads')
 
 const pdfRoutes = express.Router();
 
@@ -19,11 +18,9 @@ pdfRoutes.get('/', (req, res) => {
 pdfRoutes.post('/', upload.array('pdf', 100), async (req, res) => {
 
   try {
-    let list = []
 
-
-    await req.files.map((item) => {
-      list.push(`${folderPath}/${item.originalname}`)
+    const list = await req.files.map((item) => {
+      return `${folderPath}/${item.originalname}`
     })
 
     await mergePdf(list)
@@ -33,7 +30,7 @@ pdfRoutes.post('/', upload.array('pdf', 100), async (req, res) => {
         console.log(err)
       }
       console.log('Sucess on Merge PDF')
-      cleanFiles(folderPath,downloadPath)
+      cleanFiles(folderPath, downloadPath)
 
     })
 

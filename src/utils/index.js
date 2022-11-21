@@ -1,7 +1,8 @@
 import cmd from 'node-cmd'
+import * as url from 'url';
 
 
-function cleanFiles(upload,download) {
+function cleanFiles(upload, download) {
 
   let terminalCommandUploads = `cd ${upload} && rm *.pdf`
   cmd.runSync(terminalCommandUploads)
@@ -11,6 +12,14 @@ function cleanFiles(upload,download) {
 }
 
 
+function getDirName(path) {
+  const __dirname = url.fileURLToPath(new URL('../../src', import.meta.url));
+  const folderPath = `${__dirname}${path}`;
+  return folderPath
+}
+
+
 export {
-  cleanFiles
+  cleanFiles,
+  getDirName
 }

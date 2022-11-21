@@ -1,9 +1,7 @@
 import merge from 'easy-pdf-merge';
+import { getDirName } from '../utils';
 
-import * as url from 'url';
-const __dirname = url.fileURLToPath(new URL('../../src', import.meta.url));
-const folderPath = `${__dirname}/public/downloads/output.pdf`;
-//console.log(folderPath)
+const folderPath = getDirName('/public/downloads/output.pdf')
 
 function mergePdf(list) {
 
